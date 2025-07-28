@@ -1,0 +1,47 @@
+{
+  "manifest_version": 3,
+  "name": "LLM Chat Logger",
+  "version": "3.0",
+  "description": "Capture prompts and responses from ChatGPT and Gemini/Bard conversations with a manual trigger",
+  "permissions": ["storage", "scripting", "activeTab"],
+  // Grant access to ChatGPT and Gemini/Bard domains so the extension can run on these sites.
+  "host_permissions": [
+    "https://chat.openai.com/*",
+    "https://chatgpt.com/*",
+    "https://gemini.google.com/*",
+    "https://g.co/gemini/*",
+    "https://bard.google.com/*"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": "icon.png"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "icons": {
+    "16": "icon.png",
+    "48": "icon.png",
+    "128": "icon.png"
+  }
+  ,
+  // Inject our content script on both ChatGPT and Gemini/Bard pages. Without
+  // this section the script would only run when manually triggered from the popup.
+  "content_scripts": [
+    {
+      "matches": [
+        "https://chat.openai.com/*",
+        "https://chatgpt.com/*"
+      ],
+      "js": ["content.js"]
+    },
+    {
+      "matches": [
+        "https://gemini.google.com/*",
+        "https://g.co/gemini/*",
+        "https://bard.google.com/*"
+      ],
+      "js": ["content.js"]
+    }
+  ]
+}
