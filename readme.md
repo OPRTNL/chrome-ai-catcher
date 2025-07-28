@@ -1,4 +1,4 @@
-# LLM Chat Logger (Chrome Extension)
+# AI Catcher (Chrome Extension)
 
 Extension Chrome pour capturer les conversations visibles dans ChatGPT et Gemini (Google), au format brut et textuel. 
 
